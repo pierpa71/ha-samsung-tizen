@@ -16,7 +16,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import APPS, SOURCES
+from .const import SOURCES
 from .coordinator import SamsungTizenConfigEntry, SamsungTVCoordinator
 
 BASE_FEATURES = (
@@ -47,7 +47,6 @@ class SamsungTVMediaPlayer(CoordinatorEntity[SamsungTVCoordinator], MediaPlayerE
     _attr_has_entity_name = True
     _attr_name = None
     _attr_device_class = MediaPlayerDeviceClass.TV
-    _attr_source_list = [*SOURCES, *APPS]
 
     def __init__(self, coordinator: SamsungTVCoordinator) -> None:
         super().__init__(coordinator)
@@ -57,6 +56,10 @@ class SamsungTVMediaPlayer(CoordinatorEntity[SamsungTVCoordinator], MediaPlayerE
     @property
     def state(self) -> MediaPlayerState:
         return MediaPlayerState.ON if self.coordinator.is_on else MediaPlayerState.OFF
+
+    @property
+    def source_list(self) -> list[str]:
+        return [*SOURCES, *self.coordinator.apps]
 
     @property
     def supported_features(self) -> MediaPlayerEntityFeature:
@@ -99,8 +102,8 @@ class SamsungTVMediaPlayer(CoordinatorEntity[SamsungTVCoordinator], MediaPlayerE
     async def async_select_source(self, source: str) -> None:
         if source in SOURCES:
             await self.coordinator.async_send_keys([SOURCES[source]])
-        elif source in APPS:
-            await self.coordinator.async_launch_app(APPS[source])
+        elif source in self.coordinator.apps:
+            await self.coordinator.async_launch_app(source)
         else:
             raise HomeAssistantError(f"Sorgente sconosciuta: {source}")
 
@@ -108,12 +111,9 @@ class SamsungTVMediaPlayer(CoordinatorEntity[SamsungTVCoordinator], MediaPlayerE
         self, media_type: MediaType | str, media_id: str, **kwargs: Any
     ) -> None:
         if media_type == MediaType.APP:
-            await self.coordinator.async_launch_app(APPS.get(media_id, media_id))
+            await self.coordinator.async_launch_app(media_id)
         elif media_type == MediaType.CHANNEL:
-            if not media_id.isdigit():
-                raise HomeAssistantError("Il canale deve essere un numero")
-            keys = [f"KEY_{digit}" for digit in media_id] + ["KEY_ENTER"]
-            await self.coordinator.async_send_keys(keys)
+            await self.coordinator.async_set_channel(media_id)
         elif media_type == "send_key":
             await self.coordinator.async_send_keys([media_id])
         else:

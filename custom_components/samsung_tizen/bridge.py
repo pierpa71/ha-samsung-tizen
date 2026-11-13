@@ -152,6 +152,19 @@ class SamsungTVBridge:
         """Launch an app by its Tizen id."""
         await self._async_send([ChannelEmitCommand.launch_app(app_id, app_type)], 0)
 
+    async def async_app_list(self) -> list[dict[str, Any]] | None:
+        """Return the TV's installed apps (None if the model doesn't support it)."""
+        async with self._lock:
+            try:
+                remote = await self._async_get_remote()
+                return await remote.app_list()
+            except UnauthorizedError as err:
+                await self._async_close_remote()
+                raise AuthDenied from err
+            except _WS_ERRORS as err:
+                await self._async_close_remote()
+                raise CannotConnect(str(err) or type(err).__name__) from err
+
     async def async_wake(self, mac: str, broadcast: str) -> None:
         """Send a Wake-on-LAN magic packet."""
         loop = asyncio.get_running_loop()

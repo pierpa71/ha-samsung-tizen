@@ -4,8 +4,13 @@
       "user": {
         "title": "Samsung TV (Tizen)",
         "description": "Inserisci l'indirizzo IP del TV. Il TV deve essere acceso e sulla stessa rete di Home Assistant.",
-        "data": { "host": "Indirizzo IP", "name": "Nome (facoltativo)" },
-        "data_description": { "host": "Consiglio: assegna al TV un IP fisso dal router." }
+        "data": {
+          "host": "Indirizzo IP",
+          "name": "Nome (facoltativo)"
+        },
+        "data_description": {
+          "host": "Consiglio: assegna al TV un IP fisso dal router."
+        }
       },
       "pair": {
         "title": "Abbina {name}",
@@ -27,12 +32,114 @@
       "init": {
         "title": "Wake-on-LAN",
         "description": "Serve ad accendere il TV quando è spento del tutto. Sul TV attiva Impostazioni > Generali > Rete > Impostazioni esperto > Accendi con dispositivo mobile.",
-        "data": { "mac": "MAC address del TV", "broadcast_address": "Indirizzo di broadcast" }
+        "data": {
+          "mac": "MAC address del TV",
+          "broadcast_address": "Indirizzo di broadcast"
+        }
       }
     },
-    "error": { "invalid_mac": "MAC address non valido (es. aa:bb:cc:dd:ee:ff)." }
+    "error": {
+      "invalid_mac": "MAC address non valido (es. aa:bb:cc:dd:ee:ff)."
+    }
   },
   "entity": {
-    "remote": { "remote": { "name": "Telecomando" } }
+    "remote": {
+      "remote": {
+        "name": "Telecomando"
+      }
+    },
+    "button": {
+      "up": {
+        "name": "Su"
+      },
+      "down": {
+        "name": "Giù"
+      },
+      "left": {
+        "name": "Sinistra"
+      },
+      "right": {
+        "name": "Destra"
+      },
+      "enter": {
+        "name": "OK"
+      },
+      "back": {
+        "name": "Indietro"
+      },
+      "exit": {
+        "name": "Esci"
+      },
+      "home": {
+        "name": "Home"
+      },
+      "menu": {
+        "name": "Menu"
+      },
+      "info": {
+        "name": "Info"
+      },
+      "guide": {
+        "name": "Guida TV"
+      },
+      "channel_list": {
+        "name": "Lista canali"
+      },
+      "source": {
+        "name": "Sorgente (tasto)"
+      },
+      "channel_up": {
+        "name": "Canale +"
+      },
+      "channel_down": {
+        "name": "Canale −"
+      },
+      "volume_up": {
+        "name": "Volume +"
+      },
+      "volume_down": {
+        "name": "Volume −"
+      },
+      "mute": {
+        "name": "Muto"
+      },
+      "play": {
+        "name": "Play"
+      },
+      "pause": {
+        "name": "Pausa"
+      },
+      "rewind": {
+        "name": "Indietro veloce"
+      },
+      "fast_forward": {
+        "name": "Avanti veloce"
+      },
+      "red": {
+        "name": "Tasto rosso"
+      },
+      "green": {
+        "name": "Tasto verde"
+      },
+      "yellow": {
+        "name": "Tasto giallo"
+      },
+      "blue": {
+        "name": "Tasto blu"
+      }
+    },
+    "select": {
+      "source": {
+        "name": "Sorgente"
+      },
+      "app": {
+        "name": "App"
+      }
+    },
+    "text": {
+      "channel": {
+        "name": "Canale"
+      }
+    }
   }
 }

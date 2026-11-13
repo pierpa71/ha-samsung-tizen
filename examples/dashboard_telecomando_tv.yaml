@@ -1,0 +1,561 @@
+{
+  "title": "Telecomando TV",
+  "views": [
+    {
+      "title": "TV",
+      "path": "tv",
+      "icon": "mdi:remote-tv",
+      "type": "sections",
+      "max_columns": 2,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "TV 65 pollici",
+              "icon": "mdi:television"
+            },
+            {
+              "type": "tile",
+              "entity": "media_player.soggiorno_tv_65_pollici",
+              "name": "TV",
+              "grid_options": {
+                "columns": "full"
+              },
+              "tap_action": {
+                "action": "toggle"
+              }
+            },
+            {
+              "type": "entities",
+              "grid_options": {
+                "columns": "full"
+              },
+              "entities": [
+                {
+                  "entity": "select.soggiorno_tv_65_pollici_app",
+                  "name": "App"
+                },
+                {
+                  "entity": "select.soggiorno_tv_65_pollici_source",
+                  "name": "Sorgente"
+                },
+                {
+                  "entity": "text.soggiorno_tv_65_pollici_channel",
+                  "name": "Vai al canale"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "heading": "Volume e canali",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "button",
+              "name": "Vol +",
+              "icon": "mdi:volume-plus",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_volume_up"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Muto",
+              "icon": "mdi:volume-off",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_mute"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Canale +",
+              "icon": "mdi:arrow-up-bold",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_channel_up"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Vol −",
+              "icon": "mdi:volume-minus",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_volume_down"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Canali",
+              "icon": "mdi:format-list-numbered",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_channel_list"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Canale −",
+              "icon": "mdi:arrow-down-bold",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_channel_down"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Navigazione",
+              "icon": "mdi:gamepad"
+            },
+            {
+              "type": "button",
+              "name": "Home",
+              "icon": "mdi:home",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_home"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:chevron-up",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_up"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Menu",
+              "icon": "mdi:cog",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_menu"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:chevron-left",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_left"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "OK",
+              "icon": "mdi:checkbox-blank-circle-outline",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_ok"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:chevron-right",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_right"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Indietro",
+              "icon": "mdi:arrow-u-left-top",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_back"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:chevron-down",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_down"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Esci",
+              "icon": "mdi:exit-to-app",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_exit"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Info",
+              "icon": "mdi:information-outline",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_info"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Guida",
+              "icon": "mdi:television-guide",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_tv_guide"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "Sorgente",
+              "icon": "mdi:import",
+              "show_state": false,
+              "grid_options": {
+                "columns": 4
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_source_key"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "heading",
+              "heading": "Riproduzione",
+              "heading_style": "subtitle"
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:rewind",
+              "show_state": false,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_rewind"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:play",
+              "show_state": false,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_play"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:pause",
+              "show_state": false,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_pause"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "button",
+              "name": "",
+              "icon": "mdi:fast-forward",
+              "show_state": false,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_fast_forward"
+                }
+              },
+              "hold_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "button.soggiorno_tv_65_pollici_red_key",
+              "color": "red",
+              "hide_state": true,
+              "vertical": true,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_red_key"
+                }
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "button.soggiorno_tv_65_pollici_green_key",
+              "color": "green",
+              "hide_state": true,
+              "vertical": true,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_green_key"
+                }
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "button.soggiorno_tv_65_pollici_yellow_key",
+              "color": "yellow",
+              "hide_state": true,
+              "vertical": true,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_yellow_key"
+                }
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "button.soggiorno_tv_65_pollici_blue_key",
+              "color": "blue",
+              "hide_state": true,
+              "vertical": true,
+              "grid_options": {
+                "columns": 3
+              },
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "button.press",
+                "target": {
+                  "entity_id": "button.soggiorno_tv_65_pollici_blue_key"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

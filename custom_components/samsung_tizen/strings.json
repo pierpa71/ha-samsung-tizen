@@ -4,8 +4,13 @@
       "user": {
         "title": "Samsung TV (Tizen)",
         "description": "Enter the IP address of the TV. The TV must be on and on the same network as Home Assistant.",
-        "data": { "host": "IP address", "name": "Name (optional)" },
-        "data_description": { "host": "Tip: give the TV a fixed IP in your router." }
+        "data": {
+          "host": "IP address",
+          "name": "Name (optional)"
+        },
+        "data_description": {
+          "host": "Tip: give the TV a fixed IP in your router."
+        }
       },
       "pair": {
         "title": "Pair {name}",
@@ -27,12 +32,114 @@
       "init": {
         "title": "Wake-on-LAN",
         "description": "Used to turn the TV on when it is fully off. On the TV, enable Settings > General > Network > Expert settings > Power on with mobile.",
-        "data": { "mac": "TV MAC address", "broadcast_address": "Broadcast address" }
+        "data": {
+          "mac": "TV MAC address",
+          "broadcast_address": "Broadcast address"
+        }
       }
     },
-    "error": { "invalid_mac": "Invalid MAC address (e.g. aa:bb:cc:dd:ee:ff)." }
+    "error": {
+      "invalid_mac": "Invalid MAC address (e.g. aa:bb:cc:dd:ee:ff)."
+    }
   },
   "entity": {
-    "remote": { "remote": { "name": "Remote" } }
+    "remote": {
+      "remote": {
+        "name": "Remote"
+      }
+    },
+    "button": {
+      "up": {
+        "name": "Up"
+      },
+      "down": {
+        "name": "Down"
+      },
+      "left": {
+        "name": "Left"
+      },
+      "right": {
+        "name": "Right"
+      },
+      "enter": {
+        "name": "OK"
+      },
+      "back": {
+        "name": "Back"
+      },
+      "exit": {
+        "name": "Exit"
+      },
+      "home": {
+        "name": "Home"
+      },
+      "menu": {
+        "name": "Menu"
+      },
+      "info": {
+        "name": "Info"
+      },
+      "guide": {
+        "name": "TV guide"
+      },
+      "channel_list": {
+        "name": "Channel list"
+      },
+      "source": {
+        "name": "Source key"
+      },
+      "channel_up": {
+        "name": "Channel up"
+      },
+      "channel_down": {
+        "name": "Channel down"
+      },
+      "volume_up": {
+        "name": "Volume up"
+      },
+      "volume_down": {
+        "name": "Volume down"
+      },
+      "mute": {
+        "name": "Mute"
+      },
+      "play": {
+        "name": "Play"
+      },
+      "pause": {
+        "name": "Pause"
+      },
+      "rewind": {
+        "name": "Rewind"
+      },
+      "fast_forward": {
+        "name": "Fast forward"
+      },
+      "red": {
+        "name": "Red key"
+      },
+      "green": {
+        "name": "Green key"
+      },
+      "yellow": {
+        "name": "Yellow key"
+      },
+      "blue": {
+        "name": "Blue key"
+      }
+    },
+    "select": {
+      "source": {
+        "name": "Source"
+      },
+      "app": {
+        "name": "App"
+      }
+    },
+    "text": {
+      "channel": {
+        "name": "Channel"
+      }
+    }
   }
 }

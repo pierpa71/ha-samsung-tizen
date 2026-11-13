@@ -4,6 +4,15 @@ Integrazione personalizzata per i TV Samsung con Tizen (modelli dal 2016 in poi)
 
 ## Funzioni
 
+### Novità 0.2.0
+- **App**: l'elenco viene letto dal TV, con gli ID giusti per il tuo modello. Ci sono un menu *App* e le app nelle sorgenti del media player.
+- **Sorgente**: un menu con TV, HDMI e HDMI 1-4.
+- **Canale**: scrivi il numero e il TV ci va.
+- **26 pulsanti**: frecce, OK, Indietro, Esci, Home, Menu, Info, Guida, Lista canali, Canale ±, Volume ±, Muto, Play, Pausa, Avanti e indietro veloce, tasti colorati.
+- **Dashboard di esempio** con il pad direzionale in `examples/dashboard_telecomando_tv.yaml`. Sostituisci `soggiorno_tv_65_pollici` con il nome delle tue entità.
+
+### Base
+
 - **Media player**: accensione e spegnimento, volume su/giù, muto, play/pausa/stop, canale su/giù (tasti avanti/indietro), sorgenti (TV, HDMI 1-4) e app (Netflix, YouTube, Prime Video, Disney+, Apple TV, Spotify, Plex)
 - **Telecomando** (`remote`): invia qualsiasi tasto, per esempio `KEY_HOME`, `KEY_UP`, `KEY_ENTER`, `KEY_RETURN`
 - **Abbinamento guidato**: accetti il popup sul TV e il token viene salvato

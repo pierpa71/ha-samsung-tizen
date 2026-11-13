@@ -16,6 +16,9 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from .bridge import AuthDenied, CannotConnect, SamsungTVBridge
 from .const import (
+    APP_LIST_MAX_ATTEMPTS,
+    APPS,
+    HIDDEN_APP_IDS,
     CONF_BROADCAST,
     DEFAULT_BROADCAST,
     DOMAIN,
@@ -57,6 +60,9 @@ class SamsungTVCoordinator(DataUpdateCoordinator[TVState]):
         self.bridge = bridge
         self._expected_on: bool | None = None
         self._expected_until = 0.0
+        # name -> (app id, launch type); replaced by the TV's own list once read.
+        self.apps: dict[str, tuple[str, str]] = dict(APPS)
+        self._app_list_attempts = 0
 
     async def _async_update_data(self) -> TVState:
         info = await self.bridge.async_device_info()
@@ -68,7 +74,31 @@ class SamsungTVCoordinator(DataUpdateCoordinator[TVState]):
             power = "on" if power_state == "on" else "standby"
         if power != "on":
             await self.bridge.async_close()
+        elif self._app_list_attempts < APP_LIST_MAX_ATTEMPTS:
+            await self._async_load_apps()
         return TVState(power=power, info=info)
+
+    async def _async_load_apps(self) -> None:
+        self._app_list_attempts += 1
+        try:
+            installed = await self.bridge.async_app_list()
+        except (AuthDenied, CannotConnect) as err:
+            _LOGGER.debug("Could not read app list: %s", err)
+            return
+        if not installed:
+            _LOGGER.debug("TV did not return an app list, using defaults")
+            return
+        apps: dict[str, tuple[str, str]] = {}
+        for app in installed:
+            app_id, name = app.get("appId"), app.get("name")
+            if not app_id or not name or app_id in HIDDEN_APP_IDS:
+                continue
+            # Same convention as Samsung's own apps: type 2 = deep link.
+            launch = "DEEP_LINK" if app.get("app_type") == 2 else "NATIVE_LAUNCH"
+            apps[name] = (app_id, launch)
+        self.apps = dict(sorted(apps.items(), key=lambda kv: kv[0].casefold()))
+        self._app_list_attempts = APP_LIST_MAX_ATTEMPTS
+        _LOGGER.debug("Loaded %d apps from the TV", len(self.apps))
 
     # ---- shared state -------------------------------------------------
 
@@ -124,10 +154,20 @@ class SamsungTVCoordinator(DataUpdateCoordinator[TVState]):
             raise HomeAssistantError("Il TV è spento")
         await self._run(self.bridge.async_send_keys(keys, delay))
 
-    async def async_launch_app(self, app_id: str) -> None:
+    async def async_launch_app(self, app: str) -> None:
+        """Launch an app by name (from the app list) or by Tizen app id."""
         if not self.is_on:
             raise HomeAssistantError("Il TV è spento")
-        await self._run(self.bridge.async_launch_app(app_id))
+        app_id, launch = self.apps.get(app) or next(
+            (v for v in self.apps.values() if v[0] == app), (app, "DEEP_LINK")
+        )
+        await self._run(self.bridge.async_launch_app(app_id, launch))
+
+    async def async_set_channel(self, channel: str) -> None:
+        channel = channel.strip()
+        if not channel.isdigit():
+            raise HomeAssistantError("Il canale deve essere un numero")
+        await self.async_send_keys([f"KEY_{d}" for d in channel] + ["KEY_ENTER"], 0.2)
 
     async def async_turn_on(self) -> None:
         if self.data is not None and self.data.power == "standby":

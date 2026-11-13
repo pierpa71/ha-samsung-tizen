@@ -9,7 +9,13 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from .bridge import SamsungTVBridge
 from .coordinator import SamsungTizenConfigEntry, SamsungTVCoordinator
 
-PLATFORMS = [Platform.MEDIA_PLAYER, Platform.REMOTE]
+PLATFORMS = [
+    Platform.BUTTON,
+    Platform.MEDIA_PLAYER,
+    Platform.REMOTE,
+    Platform.SELECT,
+    Platform.TEXT,
+]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: SamsungTizenConfigEntry) -> bool:
