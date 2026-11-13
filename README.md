@@ -1,0 +1,48 @@
+# Samsung TV (Tizen) per Home Assistant
+
+Integrazione personalizzata per i TV Samsung con Tizen (modelli dal 2016 in poi).
+
+## Funzioni
+
+- **Media player**: accensione e spegnimento, volume su/giù, muto, play/pausa/stop, canale su/giù (tasti avanti/indietro), sorgenti (TV, HDMI 1-4) e app (Netflix, YouTube, Prime Video, Disney+, Apple TV, Spotify, Plex)
+- **Telecomando** (`remote`): invia qualsiasi tasto, per esempio `KEY_HOME`, `KEY_UP`, `KEY_ENTER`, `KEY_RETURN`
+- **Abbinamento guidato**: accetti il popup sul TV e il token viene salvato
+- **Wake-on-LAN** per accendere il TV quando è spento del tutto
+
+## Installazione
+
+**HACS:** HACS → menu ⋮ → *Repository personalizzati* → aggiungi l'URL di questo repo con categoria *Integration* → installa → riavvia Home Assistant.
+
+**Manuale:** copia `custom_components/samsung_tizen` nella cartella `config/custom_components/` di Home Assistant e riavvia.
+
+Poi: *Impostazioni → Dispositivi e servizi → Aggiungi integrazione → Samsung TV (Tizen)*, inserisci l'IP del TV (acceso) e accetta il popup sul TV.
+
+## Esempi
+
+```yaml
+# Apri Netflix
+action: media_player.select_source
+target: { entity_id: media_player.samsung_tv }
+data: { source: Netflix }
+
+# App qualsiasi tramite app id
+action: media_player.play_media
+target: { entity_id: media_player.samsung_tv }
+data: { media_content_type: app, media_content_id: "111299001912" }
+
+# Vai al canale 5
+action: media_player.play_media
+target: { entity_id: media_player.samsung_tv }
+data: { media_content_type: channel, media_content_id: "5" }
+
+# Sequenza di tasti
+action: remote.send_command
+target: { entity_id: remote.samsung_tv_telecomando }
+data: { command: [HOME, LEFT, ENTER], delay_secs: 0.5 }
+```
+
+## Limiti
+
+- **Volume**: il TV non comunica il livello del volume né lo stato del muto. Si usano volume su/giù e il muto è un interruttore.
+- **Accensione da spento**: serve il Wake-on-LAN, quindi devi impostare il MAC nelle opzioni e attivare sul TV *Accendi con dispositivo mobile*. Il pacchetto WoL deve poter raggiungere la rete del TV; da Docker o Podman su macOS non ci arriva.
+- **Tasti HDMI 1-4**: non tutti i modelli supportano `KEY_HDMI1`…`4`. In alternativa c'è `HDMI`, che passa alla sorgente successiva.

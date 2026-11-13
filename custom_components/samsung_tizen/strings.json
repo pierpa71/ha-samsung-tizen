@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Samsung TV (Tizen)",
+        "description": "Enter the IP address of the TV. The TV must be on and on the same network as Home Assistant.",
+        "data": { "host": "IP address", "name": "Name (optional)" },
+        "data_description": { "host": "Tip: give the TV a fixed IP in your router." }
+      },
+      "pair": {
+        "title": "Pair {name}",
+        "description": "Press **Submit**, then within 45 seconds choose **Allow** on the popup that appears on the TV ({host})."
+      }
+    },
+    "error": {
+      "cannot_connect": "TV not reachable. Make sure it is on and the IP address is correct.",
+      "auth_denied": "The TV refused the connection. Try again and choose Allow (or remove Home Assistant from the TV's device list under Settings > General > External device manager > Device connection manager).",
+      "pairing_failed": "No answer from the TV in time. Try again and accept the popup on the TV."
+    },
+    "abort": {
+      "already_configured": "This TV is already configured.",
+      "reauth_successful": "Pairing updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Wake-on-LAN",
+        "description": "Used to turn the TV on when it is fully off. On the TV, enable Settings > General > Network > Expert settings > Power on with mobile.",
+        "data": { "mac": "TV MAC address", "broadcast_address": "Broadcast address" }
+      }
+    },
+    "error": { "invalid_mac": "Invalid MAC address (e.g. aa:bb:cc:dd:ee:ff)." }
+  },
+  "entity": {
+    "remote": { "remote": { "name": "Remote" } }
+  }
+}

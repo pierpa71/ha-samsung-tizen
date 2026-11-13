@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Samsung TV (Tizen)",
+        "description": "Inserisci l'indirizzo IP del TV. Il TV deve essere acceso e sulla stessa rete di Home Assistant.",
+        "data": { "host": "Indirizzo IP", "name": "Nome (facoltativo)" },
+        "data_description": { "host": "Consiglio: assegna al TV un IP fisso dal router." }
+      },
+      "pair": {
+        "title": "Abbina {name}",
+        "description": "Premi **Invia**, poi entro 45 secondi scegli **Consenti** nel popup che compare sul TV ({host})."
+      }
+    },
+    "error": {
+      "cannot_connect": "TV non raggiungibile. Controlla che sia acceso e che l'IP sia corretto.",
+      "auth_denied": "Il TV ha rifiutato la connessione. Riprova e scegli Consenti (oppure togli Home Assistant dall'elenco in Impostazioni > Generali > Gestione dispositivi esterni > Gestione connessione dispositivi).",
+      "pairing_failed": "Nessuna risposta dal TV in tempo. Riprova e accetta il popup sul TV."
+    },
+    "abort": {
+      "already_configured": "Questo TV è già configurato.",
+      "reauth_successful": "Abbinamento aggiornato."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Wake-on-LAN",
+        "description": "Serve ad accendere il TV quando è spento del tutto. Sul TV attiva Impostazioni > Generali > Rete > Impostazioni esperto > Accendi con dispositivo mobile.",
+        "data": { "mac": "MAC address del TV", "broadcast_address": "Indirizzo di broadcast" }
+      }
+    },
+    "error": { "invalid_mac": "MAC address non valido (es. aa:bb:cc:dd:ee:ff)." }
+  },
+  "entity": {
+    "remote": { "remote": { "name": "Telecomando" } }
+  }
+}

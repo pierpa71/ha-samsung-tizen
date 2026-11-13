@@ -1,0 +1,13 @@
+{
+  "domain": "samsung_tizen",
+  "name": "Samsung TV (Tizen)",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/your-user/ha-samsung-tizen",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/your-user/ha-samsung-tizen/issues",
+  "loggers": ["samsungtvws"],
+  "requirements": ["samsungtvws[async]>=2.6.0", "wakeonlan>=2.1.0"],
+  "version": "0.1.0"
+}
