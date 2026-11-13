@@ -2,9 +2,30 @@
   "title": "Telecomando TV",
   "views": [
     {
-      "title": "TV",
-      "path": "tv",
+      "title": "Telecomando",
+      "path": "telecomando",
       "icon": "mdi:remote-tv",
+      "type": "sections",
+      "max_columns": 1,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "custom:samsung-remote-card",
+              "entity": "media_player.soggiorno_tv_65_pollici",
+              "grid_options": {
+                "columns": "full"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Pulsanti",
+      "path": "tv",
+      "icon": "mdi:gesture-tap-button",
       "type": "sections",
       "max_columns": 2,
       "sections": [
